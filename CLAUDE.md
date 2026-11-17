@@ -17,11 +17,11 @@ Do szybkiej edycji wystarczy otworzyć `index.html` w przeglądarce.
 
 ## Architektura
 
-- `index.html` — cała strona (UTF-8): siatka miniatur generowana w JS z listy numerów + lightbox (klawiatura ←/→/Esc). Lista numerów w skrypcie ma lukę (brak `010`) — odpowiada plikom na dysku.
-- `foto NNN.jpg` — oryginały (lightbox), `.thumb_foto NNN.jpg` — miniatury (siatka), `.slide_foto NNN.jpg` — pozostałość po igalu, nieużywana przez obecną stronę. `lucznik466.zip` — komplet oryginałów do pobrania.
+- `index.html` — cała strona (UTF-8), przeglądarka w formie książki: każdy skan `foto-NNN.jpg` to rozkładówka (dwie strony), poza okładką (`foto-001`, pojedyncza strona). Skan jest cięty na lewą/prawą połowę przez `background-size:200%`; zmiana strony to element `.leaf` obracany w CSS 3D wokół grzbietu (`go()`), a `shift()` centruje zamkniętą książkę. Lista numerów w skrypcie ma lukę (brak `010`) — odpowiada plikom na dysku. Stan strony trzymany w `#hash`.
+- `foto-NNN.jpg` — jedyne używane obrazy. `lucznik466.zip` — komplet oryginałów do pobrania.
 - `Dockerfile` — `nginxinc/nginx-unprivileged` (rootless, port 8080, user 101) z kopią całego katalogu do `/usr/share/nginx/html`; `.dockerignore` wyklucza pliki repo (`.git`, `Dockerfile`, `CLAUDE.md`).
 
 ## Uwagi
 
 - Strona była pierwotnie wygenerowana przez igal 1.4 (ISO-8859-2, osobne `N.html` na slajd); stare adresy `N.html` już nie istnieją.
-- Dodanie zdjęcia: wrzuć `foto NNN.jpg` i `.thumb_foto NNN.jpg` (120 px wysokości) i dopisz numer do listy w `index.html`; zaktualizuj też `lucznik466.zip`.
+- Dodanie skanu: wrzuć `foto-NNN.jpg` i dostosuj listę `nums` w `index.html`; zaktualizuj też `lucznik466.zip`. Strony okładki/pojedyncze wymagałyby osobnej obsługi (teraz tylko indeks 0).
