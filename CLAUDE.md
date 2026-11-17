@@ -25,3 +25,7 @@ Do szybkiej edycji wystarczy otworzyć `index.html` w przeglądarce.
 
 - Strona była pierwotnie wygenerowana przez igal 1.4 (ISO-8859-2, osobne `N.html` na slajd); stare adresy `N.html` już nie istnieją.
 - Dodanie skanu: wrzuć `foto-NNN.jpg` i dostosuj listę `nums` w `index.html`; zaktualizuj też `lucznik466.zip`. Strony okładki/pojedyncze wymagałyby osobnej obsługi (teraz tylko indeks 0).
+
+## CI
+
+`.github/workflows/docker.yml` buduje obraz na każdy push/PR, a poza PR-ami wypycha go do `ghcr.io/mslomnicki/lucznik-service-manual` (tagi: `latest` z domyślnej gałęzi, `sha-…`, oraz semver dla tagów `v*`). Autoryzacja przez `GITHUB_TOKEN`.
